@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist uploads and the database across container restarts.
+      - geospatial-data:/app/data
+    environment:
+      DEBUG: "false"
+      MAX_UPLOAD_SIZE_MB: "50"
+    restart: unless-stopped
+
+volumes:
+  geospatial-data:
